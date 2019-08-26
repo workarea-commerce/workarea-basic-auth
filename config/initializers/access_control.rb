@@ -15,7 +15,9 @@ Workarea.configure do |config|
   basic_auth.exclude_routes.add("/media/*")
   basic_auth.exclude_routes.add("/product_images/*")
 
-  basic_auth.whitelisted_ips = Rack::Attack::ALERT_LOGIC_IP_ADDRESSES
+  if Rack::Attack.const_defined? :IGNORED_IP_ADDRESSES
+    basic_auth.whitelisted_ips = Rack::Attack::IGNORED_IP_ADDRESSES
+  end
 
   Workarea.config.basic_auth = basic_auth
 
