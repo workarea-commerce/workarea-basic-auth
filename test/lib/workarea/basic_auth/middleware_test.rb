@@ -41,11 +41,13 @@ module Workarea
       end
 
       def test_unauthorized_users_returns_200_if_ip_is_whitelisted
-        ip_addr = Workarea.config.basic_auth.whitelisted_ips.first.to_s
-        env = Rack::MockRequest.env_for("/login", 'REMOTE_ADDR' => ip_addr)
-        get_login = Rack::Response.new(middleware.call(env))
+        Workarea.with_config do |config|
+          config.basic_auth.whitelisted_ips = ['192.168.0.1']
+          env = Rack::MockRequest.env_for("/login", 'REMOTE_ADDR' => '192.168.0.1')
+          get_login = Rack::Response.new(middleware.call(env))
 
-        assert_equal(200, get_login.status)
+          assert_equal(200, get_login.status)
+        end
       end
 
       def test_unathorized_users_returns_401_for_all_http_methods_on_a_path_by_default

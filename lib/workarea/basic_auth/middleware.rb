@@ -74,7 +74,7 @@ module Workarea
             end
 
             def whitelisted_ips
-              Workarea.config.basic_auth.whitelisted_ips
+              Array.wrap(Workarea.config.basic_auth.whitelisted_ips)
             end
         end
     end
