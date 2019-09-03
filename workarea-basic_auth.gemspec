@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "HTTP basic authentication Rack middleware for the Workarea Commerce Platform"
   s.files       = `git ls-files`.split("\n")
   s.license = 'Business Software License'
-  s.test_files  = Dir["test/**/*"]
+  s.test_files = Dir["test/**/*"]
 
   s.required_ruby_version = ">= 2.0.0"
 
