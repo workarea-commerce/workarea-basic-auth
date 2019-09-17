@@ -1,3 +1,17 @@
+Workarea Basic Auth 1.1.2 (2019-09-17)
+--------------------------------------------------------------------------------
+
+*   Fix for whitelisted IPs being blank
+
+*   Fix Error on App Initialization
+
+    This plugin causes an error on init with the latest Workarea version
+    because the `Rack::Attack::ALERT_LOGIC_IP_ADDRESSES` constant was
+    replaced with the more generic `Rack::Attack::IGNORED_IP_ADDRESSES`,
+    when it is defined. Since Basic Auth uses this constant for its own
+    whitelist, app initialization errors out.
+
+
 Workarea Basic Auth 1.1.1 (2019-08-21)
 --------------------------------------------------------------------------------
 
